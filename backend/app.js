@@ -30,7 +30,8 @@ app.use(helmet());
 const allowedOrigins = [
   'http://localhost:5173', // Vite local development
   'http://localhost:3000', // React CRA local development
-  process.env.FRONTEND_URL // Production frontend URL
+  'https://cone-crazy.vercel.app', // Production Vercel URL
+  process.env.FRONTEND_URL // Fallback env var
 ].filter(Boolean); // Remove undefined/null
 
 app.use(cors({

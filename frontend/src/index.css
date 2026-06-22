@@ -1,0 +1,108 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', sans-serif;
+  
+  /* Enterprise SaaS Palette (INVEN style) */
+  --color-primary: #3326AE; /* Deep Indigo */
+  --color-primary-hover: #261B85;
+  --color-secondary: #0F172A; /* Very Dark Navy for headings */
+  --color-background: #F4F5F7; /* Very light gray */
+  --color-surface: #FFFFFF; /* Pure White */
+  --color-surface-hover: #F8FAFC;
+  --color-border: #E2E8F0;
+  
+  /* Text Colors */
+  --color-text: #1E293B;
+  --color-text-muted: #64748B;
+  
+  /* Status Colors */
+  --color-success: #10B981;
+  --color-success-bg: #D1FAE5;
+  --color-danger: #EF4444;
+  --color-danger-bg: #FEE2E2;
+  --color-warning: #F59E0B;
+  --color-warning-bg: #FEF3C7;
+  --color-primary-bg: rgba(51, 38, 174, 0.1);
+
+  /* Custom Animations for UI */
+  --animate-shimmer: shimmer 2.5s infinite;
+  --animate-shine: shine 1.5s ease-out forwards;
+  --animate-shake: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+  --animate-fade-in-up: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-scale-in: scaleIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.dark {
+  --color-primary: #5244E2;
+  --color-primary-hover: #4034B8;
+  --color-secondary: #F8FAFC;
+  --color-background: #0B0F19;
+  --color-surface: #151A2A;
+  --color-surface-hover: #1E253A;
+  --color-border: #2A314A;
+  --color-text: #E2E8F0;
+  --color-text-muted: #94A3B8;
+  --color-success-bg: rgba(16,185,129,0.1);
+  --color-danger-bg: rgba(239,68,68,0.1);
+  --color-warning-bg: rgba(245,158,11,0.1);
+}
+
+@layer base {
+  html, body {
+    @apply font-sans antialiased bg-background text-text;
+  }
+}
+
+/* Custom utilities for flat SaaS cards */
+@layer utilities {
+  .saas-card {
+    @apply bg-surface rounded-xl border border-border shadow-[0_2px_10px_-3px_rgba(6,81,237,0.1)];
+  }
+  
+  .saas-input {
+    @apply w-full px-4 py-2.5 bg-surface text-text rounded-lg border border-border focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all placeholder:text-text-muted/60 text-sm;
+  }
+  
+  /* Custom scrollbar to respect theme */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: var(--color-background);
+    border-radius: 4px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: 4px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: var(--color-text-muted);
+  }
+}
+
+@keyframes shimmer {
+  100% { transform: translateX(100%); }
+}
+
+@keyframes shine {
+  100% { transform: translateX(200%) skewX(-12deg); }
+}
+
+@keyframes shake {
+  10%, 90% { transform: translate3d(-1px, 0, 0); }
+  20%, 80% { transform: translate3d(2px, 0, 0); }
+  30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+  40%, 60% { transform: translate3d(4px, 0, 0); }
+}
+
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+  0% { opacity: 0; transform: scale(0.95); }
+  100% { opacity: 1; transform: scale(1); }
+}

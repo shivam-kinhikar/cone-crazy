@@ -7,8 +7,8 @@ import chocolateBg from '../assets/chocolate-bg.png';
 import api from '../utils/axios';
 
 const Login = () => {
-  const [email, setEmail] = useState('admin@gmail.com');
-  const [password, setPassword] = useState('123456');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   
   // Contact Admin State
   const [showContact, setShowContact] = useState(false);

@@ -27,7 +27,25 @@ app.use(express.static('public'));
 
 // Global Middlewares
 app.use(helmet());
-app.use(cors());
+const allowedOrigins = [
+  'http://localhost:5173', // Vite local development
+  'http://localhost:3000', // React CRA local development
+  process.env.FRONTEND_URL // Production frontend URL
+].filter(Boolean); // Remove undefined/null
+
+app.use(cors({
+  origin: function (origin, callback) {
+    // allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    
+    if (allowedOrigins.indexOf(origin) !== -1 || allowedOrigins.some(url => origin.startsWith(url))) {
+      callback(null, true);
+    } else {
+      callback(new Error('The CORS policy for this site does not allow access from the specified Origin.'));
+    }
+  },
+  credentials: true,
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev'));

@@ -97,7 +97,7 @@ const Topbar = ({ toggleSidebar }) => {
           </button>
 
           {showNotifications && (
-            <div className="absolute right-0 mt-3 w-80 bg-surface border border-border rounded-xl shadow-lg overflow-hidden animate-fade-in-up z-50">
+            <div className="absolute -right-14 sm:right-0 mt-3 w-[300px] sm:w-80 bg-surface border border-border rounded-xl shadow-lg overflow-hidden animate-fade-in-up z-50">
               <div className="p-4 border-b border-border flex justify-between items-center bg-background/50">
                 <h3 className="font-bold text-secondary text-sm">Notifications</h3>
                 <div className="flex items-center space-x-3">

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { IceCream, ArrowRight, Lock, Mail, X, Send, CheckCircle, User as UserIcon, MessageSquare, Sparkles } from 'lucide-react';
+import { IceCream, ArrowRight, Lock, Mail, X, Send, CheckCircle, User as UserIcon, MessageSquare, Sparkles, Eye, EyeOff } from 'lucide-react';
 import ThemeToggle from '../components/ThemeToggle';
 import chocolateBg from '../assets/chocolate-bg.png';
 import api from '../utils/axios';
@@ -9,6 +9,7 @@ import api from '../utils/axios';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   
   // Contact Admin State
   const [showContact, setShowContact] = useState(false);
@@ -175,13 +176,20 @@ const Login = () => {
                       <Lock size={18} className="text-text-muted/60 group-focus-within/input:text-[#fb7185] transition-colors" />
                     </div>
                     <input 
-                      type="password" 
+                      type={showPassword ? "text" : "password"} 
                       required 
-                      className="w-full bg-background border-2 border-border focus:border-[#fb7185] dark:focus:border-[#fb7185] focus:ring-4 focus:ring-[#fb7185]/10 rounded-2xl pl-12 pr-4 py-4 text-[15px] transition-all outline-none text-secondary font-bold placeholder:text-text-muted/40 shadow-inner dark:shadow-none" 
+                      className="w-full bg-background border-2 border-border focus:border-[#fb7185] dark:focus:border-[#fb7185] focus:ring-4 focus:ring-[#fb7185]/10 rounded-2xl pl-12 pr-12 py-4 text-[15px] transition-all outline-none text-secondary font-bold placeholder:text-text-muted/40 shadow-inner dark:shadow-none" 
                       value={password} 
                       onChange={e => setPassword(e.target.value)} 
                       placeholder="••••••••"
                     />
+                    <button 
+                      type="button"
+                      onClick={() => setShowPassword(!showPassword)}
+                      className="absolute inset-y-0 right-0 pr-4 flex items-center text-text-muted/60 hover:text-[#fb7185] transition-colors"
+                    >
+                      {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                    </button>
                   </div>
                 </div>
               </div>
